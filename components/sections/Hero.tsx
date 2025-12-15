@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { PlayCircle, Eye, Target } from "lucide-react";
 
@@ -164,12 +165,16 @@ export default function Hero({ onSpin }: HeroProps) {
           damping: 15,
           delay: 1.5,
         }}
-        className="absolute bottom-0 right-0 z-20 pointer-events-none select-none"
+        className="absolute bottom-0 right-0 z-20 pointer-events-none select-none w-40 md:w-64 lg:w-80"
       >
-        <img
+        <Image
           src="/deadpool2.webp"
           alt="Deadpool Peeking"
-          className="w-40 md:w-64 lg:w-80 object-contain drop-shadow-2xl transform hover:scale-110 transition-transform duration-300 origin-bottom-right"
+          width={320}
+          height={453}
+          priority
+          sizes="(max-width: 768px) 160px, (max-width: 1024px) 256px, 320px"
+          className="object-contain drop-shadow-2xl transform hover:scale-110 transition-transform duration-300 origin-bottom-right"
         />
       </motion.div>
     </section>

@@ -124,6 +124,14 @@ const TicketReveal = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Preload Watch Page Background */}
+      <div className="hidden">
+        <img
+          src={`https://image.tmdb.org/t/p/w1280${selectedMovie.backdrop_path}`}
+          alt="Preload"
+        />
+      </div>
     </div>
   );
 };
