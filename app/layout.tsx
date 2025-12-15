@@ -61,9 +61,9 @@ export const metadata: Metadata = {
     images: ["/Marvel-focus.png"],
   },
   icons: {
-    icon: "/Marvel-focus-transparent.webp",
-    shortcut: "/Marvel-focus-transparent.webp",
-    apple: "/Marvel-focus-transparent.webp",
+    icon: "/Marvel-focus-transparent.png",
+    shortcut: "/Marvel-focus-transparent.png",
+    apple: "/Marvel-focus-transparent.png",
   },
   robots: {
     index: true,
