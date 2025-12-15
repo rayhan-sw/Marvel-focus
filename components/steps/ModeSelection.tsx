@@ -26,8 +26,6 @@ const PhaseCarousel = dynamic(() => import("@/components/PhaseCarousel"), {
   loading: () => <div className="h-96 w-full bg-zinc-900/20 animate-pulse" />,
 });
 
-
-
 const ModeSelection = () => {
   // Hydration-safe particles
   const [particles, setParticles] = useState<

@@ -35,12 +35,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Rayhansw" }],
   creator: "Rayhansw",
   publisher: "Marvel Focus",
-  metadataBase: new URL("https://marvel-cinema-focus.vercel.app"),
+  metadataBase: new URL("https://marvel-focus.vercel.app"),
   openGraph: {
     title: "Marvel Focus | Heroic Productivity Timer",
     description:
       "Transform your daily tasks into an epic saga. Select a Marvel movie as your timer, engage your focus, and defeat distraction.",
-    url: "https://marvel-cinema-focus.vercel.app",
+    url: "https://marvel-focus.vercel.app",
     siteName: "Marvel Focus",
     images: [
       {
@@ -59,11 +59,6 @@ export const metadata: Metadata = {
     description:
       "Transform your daily tasks into an epic saga. Select a Marvel movie as your timer, engage your focus, and defeat distraction.",
     images: ["/Marvel-focus.png"],
-  },
-  icons: {
-    icon: "/Marvel-focus-transparent.png",
-    shortcut: "/Marvel-focus-transparent.png",
-    apple: "/Marvel-focus-transparent.png",
   },
   robots: {
     index: true,

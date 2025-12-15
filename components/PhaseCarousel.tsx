@@ -3,13 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  ChevronRight,
-  ChevronLeft,
-  Sparkles,
-  Play,
-  Film,
-} from "lucide-react";
+import { ChevronRight, ChevronLeft, Sparkles, Play, Film } from "lucide-react";
 import { Movie } from "@/types";
 import { formatRuntime } from "@/components/ui/MoviePoster";
 

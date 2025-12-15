@@ -27,7 +27,9 @@ import Swal from "sweetalert2";
 import { getTMDBImageUrl } from "@/components/ui/MoviePoster";
 
 const Review = dynamic(() => import("@/components/Review"), {
-  loading: () => <div className="animate-pulse bg-zinc-900 h-96 w-full rounded-3xl" />,
+  loading: () => (
+    <div className="animate-pulse bg-zinc-900 h-96 w-full rounded-3xl" />
+  ),
 });
 
 export default function WatchPage() {
