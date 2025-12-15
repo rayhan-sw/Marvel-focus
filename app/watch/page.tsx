@@ -316,7 +316,7 @@ export default function WatchPage() {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <Image
-          src={`https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/w1280${selectedMovie.backdrop_path}`}
           alt="Backdrop"
           fill
           priority

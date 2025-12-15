@@ -523,7 +523,7 @@ const SpinWheel: React.FC = () => {
                     >
                       <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-2xl ring-2 ring-emerald-500/50 relative">
                         <Image
-                          src={`https://image.tmdb.org/t/p/w342${winner.poster_path}`}
+                          src={`https://image.tmdb.org/t/p/w500${winner.poster_path}`}
                           alt={winner.title}
                           fill
                           sizes="128px"

@@ -57,9 +57,9 @@ const TicketReveal = () => {
                   posterPath={selectedMovie.poster_path}
                   title={selectedMovie.title}
                   className="w-full h-full"
-                  size="w342"
+                  size="w500"
                   priority
-                  sizes="(max-width: 768px) 33vw, 150px"
+                  sizes="(max-width: 768px) 50vw, 300px"
                 />
               </div>
             </div>
