@@ -66,6 +66,9 @@ export const metadata: Metadata = {
     shortcut: "/Marvel-focus-transparent.png",
     apple: "/Marvel-focus-transparent.png",
   },
+  verification: {
+    google: "DtDPMvfFD4Ueb138AOkJ8duGG6JFx3zTOj2fgLOy4Wk",
+  },
   robots: {
     index: true,
     follow: true,
