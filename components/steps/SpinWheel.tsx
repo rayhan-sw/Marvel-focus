@@ -181,7 +181,7 @@ const MovieSlot = ({
       {movie.poster_path ? (
         <div className="relative w-full h-full">
           <Image
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
             alt={movie.title}
             fill
             sizes="120px"
@@ -380,7 +380,7 @@ const SpinWheel: React.FC = () => {
             {currentMovie && (
               <motion.img
                 key={currentMovie.id}
-                src={`https://image.tmdb.org/t/p/w300${currentMovie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w342${currentMovie.poster_path}`}
                 alt={currentMovie.title}
                 className="w-28 h-28 object-cover rounded-full"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -523,11 +523,12 @@ const SpinWheel: React.FC = () => {
                     >
                       <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-2xl ring-2 ring-emerald-500/50 relative">
                         <Image
-                          src={`https://image.tmdb.org/t/p/w300${winner.poster_path}`}
+                          src={`https://image.tmdb.org/t/p/w342${winner.poster_path}`}
                           alt={winner.title}
                           fill
                           sizes="128px"
                           className="object-cover"
+                          priority
                         />
                       </div>
                     </motion.div>

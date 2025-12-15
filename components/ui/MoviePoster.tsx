@@ -8,8 +8,10 @@ interface MoviePosterProps {
   posterPath: string | null | undefined;
   title: string;
   className?: string;
-  size?: "w200" | "w300" | "w500" | "original";
+  size?: "w92" | "w154" | "w185" | "w342" | "w500" | "w780" | "original";
   showFallbackTitle?: boolean;
+  priority?: boolean;
+  sizes?: string;
 }
 
 /**
@@ -22,6 +24,8 @@ export const MoviePoster = ({
   className = "",
   size = "w500",
   showFallbackTitle = true,
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 }: MoviePosterProps) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -55,7 +59,8 @@ export const MoviePoster = ({
         src={`https://image.tmdb.org/t/p/${size}${posterPath}`}
         alt={title}
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        priority={priority}
+        sizes={sizes}
         className={`object-cover transition-opacity duration-300 ${
           imageLoaded ? "opacity-100" : "opacity-0"
         }`}
@@ -71,7 +76,7 @@ export const MoviePoster = ({
  */
 export const getTMDBImageUrl = (
   path: string | null | undefined,
-  size: "w200" | "w300" | "w500" | "original" = "w500"
+  size: "w92" | "w154" | "w185" | "w342" | "w500" | "w780" | "original" = "w500"
 ): string | null => {
   if (!path) return null;
   return `https://image.tmdb.org/t/p/${size}${path}`;

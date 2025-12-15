@@ -114,13 +114,14 @@ const MovieCard = ({
       className="relative shrink-0 w-40 md:w-52 cursor-pointer group/card"
     >
       {/* Card Container */}
-      <div className="aspect-[2/3] rounded-xl overflow-hidden bg-zinc-900 shadow-lg ring-1 ring-white/10 group-hover/card:ring-red-500/50 group-hover/card:shadow-2xl group-hover/card:shadow-red-900/20 transition-all duration-300">
+      <div className="aspect-[2/3] rounded-xl overflow-hidden bg-zinc-900 shadow-lg ring-1 ring-white/10 group-hover/card:ring-red-500/50 group-hover/card:shadow-2xl group-hover/card:shadow-red-900/20 transition-all duration-300 relative">
         {!imageError && movie.poster_path ? (
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
-            className="w-full h-full object-cover"
-            loading="lazy"
+            fill
+            sizes="(max-width: 768px) 160px, 208px"
+            className="object-cover"
             onError={() => setImageError(true)}
           />
         ) : (

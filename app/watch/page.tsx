@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCinemaStore } from "@/store/useCinemaStore";
 import {
@@ -104,7 +105,7 @@ export default function WatchPage() {
       }
 
       // Get poster URL with fallback
-      const posterUrl = getTMDBImageUrl(selectedMovie.poster_path, "w300");
+      const posterUrl = getTMDBImageUrl(selectedMovie.poster_path, "w342");
 
       // SweetAlert for foreground
       Swal.fire({
@@ -314,10 +315,13 @@ export default function WatchPage() {
       {/* Background Backdrop */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
-        <img
+        <Image
           src={`https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path}`}
           alt="Backdrop"
-          className="w-full h-full object-cover opacity-70"
+          fill
+          priority
+          className="object-cover opacity-70"
+          sizes="100vw"
         />
       </div>
 
