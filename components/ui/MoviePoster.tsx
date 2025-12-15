@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Film } from "lucide-react";
 
 interface MoviePosterProps {
@@ -45,18 +46,19 @@ export const MoviePoster = ({
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className} overflow-hidden`}>
       {/* Loading skeleton */}
       {!imageLoaded && (
-        <div className="absolute inset-0 bg-zinc-800 animate-pulse" />
+        <div className="absolute inset-0 bg-zinc-800 animate-pulse z-10" />
       )}
-      <img
+      <Image
         src={`https://image.tmdb.org/t/p/${size}${posterPath}`}
         alt={title}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className={`object-cover transition-opacity duration-300 ${
           imageLoaded ? "opacity-100" : "opacity-0"
         }`}
-        loading="lazy"
         onLoad={() => setImageLoaded(true)}
         onError={() => setImageError(true)}
       />

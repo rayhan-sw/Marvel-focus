@@ -15,9 +15,7 @@ import {
   Check,
   ShoppingBag,
   Utensils,
-  Clock,
   CheckCircle2,
-  Circle,
   ChevronDown,
   ChevronUp,
   Lock,
@@ -125,6 +123,16 @@ export default function WatchPage() {
     return () => clearInterval(interval);
   }, [isPlaying, timer, setTimer, selectedMovie]);
 
+  // Format time
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h.toString().padStart(2, "0")}:${m
+      .toString()
+      .padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
+
   // Background Notification Logic
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -167,15 +175,8 @@ export default function WatchPage() {
     };
   }, [isPlaying, isFinished]);
 
-  // Format time
-  const formatTime = (seconds: number) => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = seconds % 60;
-    return `${h.toString().padStart(2, "0")}:${m
-      .toString()
-      .padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-  };
+  // Format time (Moved up)
+  // const formatTime = ... (already defined above)
 
   // To-Do Functions
   const addTodo = (e: React.FormEvent) => {
@@ -271,7 +272,7 @@ export default function WatchPage() {
           Your focus span is shorter than a movie trailer. Sad.
         </div>
       `,
-      imageUrl: "/deadpool3.png",
+      imageUrl: "/deadpool3.webp",
       imageWidth: 250,
       imageAlt: "Deadpool",
       showCancelButton: true,

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import GlobalCurtain from "@/components/GlobalCurtain";
 
@@ -36,12 +35,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Rayhansw" }],
   creator: "Rayhansw",
   publisher: "Marvel Focus",
-  metadataBase: new URL("https://marvel-focus.vercel.app"),
+  metadataBase: new URL("https://marvel-cinema-focus.vercel.app"),
   openGraph: {
     title: "Marvel Focus | Heroic Productivity Timer",
     description:
       "Transform your daily tasks into an epic saga. Select a Marvel movie as your timer, engage your focus, and defeat distraction.",
-    url: "https://marvel-focus.vercel.app",
+    url: "https://marvel-cinema-focus.vercel.app",
     siteName: "Marvel Focus",
     images: [
       {
@@ -62,12 +61,9 @@ export const metadata: Metadata = {
     images: ["/Marvel-focus.png"],
   },
   icons: {
-    icon: "/Marvel-focus-transparent.png",
-    shortcut: "/Marvel-focus-transparent.png",
-    apple: "/Marvel-focus-transparent.png",
-  },
-  verification: {
-    google: "DtDPMvfFD4Ueb138AOkJ8duGG6JFx3zTOj2fgLOy4Wk",
+    icon: "/Marvel-focus-transparent.webp",
+    shortcut: "/Marvel-focus-transparent.webp",
+    apple: "/Marvel-focus-transparent.webp",
   },
   robots: {
     index: true,
@@ -95,7 +91,6 @@ export default function RootLayout({
         <GlobalCurtain />
         {children}
       </body>
-      <GoogleAnalytics gaId="G-SE861VNLWC" />
     </html>
   );
 }

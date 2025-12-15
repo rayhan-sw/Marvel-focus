@@ -2,25 +2,17 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
+import Image from "next/image";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import {
   Play,
-  Info,
   ChevronRight,
   ChevronLeft,
-  ChevronDown,
-  Dices,
   Sparkles,
   Clock,
   Calendar,
   Menu,
   X,
-  Star,
   Film,
 } from "lucide-react";
 import { useCinemaStore } from "@/store/useCinemaStore";
@@ -300,6 +292,31 @@ const PhaseCarousel = ({
 };
 
 const ModeSelection = () => {
+  // Hydration-safe particles
+  const [particles, setParticles] = useState<
+    {
+      id: number;
+      left: number;
+      width: number;
+      height: number;
+      duration: number;
+      delay: number;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 15 }).map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        width: Math.random() * 3 + 1,
+        height: Math.random() * 3 + 1,
+        duration: Math.random() * 5 + 5,
+        delay: Math.random() * 5,
+      }))
+    );
+  }, []);
+
   const router = useRouter();
   const { setSelectionMode, setBookingStep, setSelectedMovie, movies } =
     useCinemaStore();
@@ -398,7 +415,7 @@ const ModeSelection = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
               <img
-                src="/Marvel-focus-transparent.png"
+                src="/Marvel-focus-transparent.webp"
                 alt="Marvel Focus"
                 className="h-12 md:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]"
               />
@@ -528,23 +545,23 @@ const ModeSelection = () => {
           />
 
           {/* Floating Embers */}
-          {Array.from({ length: 15 }).map((_, i) => (
+          {particles.map((p) => (
             <motion.div
-              key={i}
+              key={p.id}
               className="absolute bottom-0 rounded-full bg-orange-500/40 blur-[1px]"
               style={{
-                left: `${Math.random() * 100}%`,
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
+                left: `${p.left}%`,
+                width: p.width,
+                height: p.height,
               }}
               animate={{
                 y: [0, -150],
                 opacity: [0, 1, 0],
               }}
               transition={{
-                duration: Math.random() * 5 + 5,
+                duration: p.duration,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: p.delay,
                 ease: "linear",
               }}
             />
@@ -555,11 +572,14 @@ const ModeSelection = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
             {/* Left Section: Logo & Tagline */}
             <div className="flex flex-col items-center md:items-start gap-4">
-              <img
-                src="/Marvel-focus-transparent.png"
-                alt="Marvel Focus"
-                className="h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"
-              />
+              <div className="relative h-16 w-48">
+                <Image
+                  src="/Marvel-focus-transparent.webp"
+                  alt="Marvel Focus"
+                  fill
+                  className="object-contain drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"
+                />
+              </div>
               <div className="text-xs font-bold tracking-[0.3em] uppercase bg-gradient-to-r from-zinc-200 via-zinc-400 to-zinc-200 bg-clip-text text-transparent drop-shadow-sm">
                 Forged with Vibranium & Code
               </div>

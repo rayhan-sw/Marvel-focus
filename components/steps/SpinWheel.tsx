@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
+import Image from "next/image";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useCinemaStore } from "@/store/useCinemaStore";
 import { Movie } from "@/types";
@@ -12,17 +13,22 @@ import {
   Sparkles,
   X,
   Play,
-  Clock,
   Calendar,
+  Clock,
 } from "lucide-react";
 
 // ============================================================================
 // Particle Component - Floating background particles
 // ============================================================================
 const Particle = ({ delay, duration }: { delay: number; duration: number }) => {
-  const randomX = Math.random() * 100;
-  const randomSize = Math.random() * 4 + 2;
-  const isGreen = Math.random() > 0.5;
+  const { randomX, randomSize, isGreen } = useMemo(
+    () => ({
+      randomX: Math.random() * 100,
+      randomSize: Math.random() * 4 + 2,
+      isGreen: Math.random() > 0.5,
+    }),
+    []
+  );
 
   return (
     <motion.div
@@ -173,15 +179,19 @@ const MovieSlot = ({
       transition={{ duration: 0.3 }}
     >
       {movie.poster_path ? (
-        <img
-          src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-          alt={movie.title}
-          className={`w-full h-full object-cover rounded-lg ${
-            isActive
-              ? "ring-4 ring-emerald-400 shadow-[0_0_40px_rgba(52,211,153,0.6)]"
-              : ""
-          }`}
-        />
+        <div className="relative w-full h-full">
+          <Image
+            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            alt={movie.title}
+            fill
+            sizes="120px"
+            className={`object-cover rounded-lg ${
+              isActive
+                ? "ring-4 ring-emerald-400 shadow-[0_0_40px_rgba(52,211,153,0.6)]"
+                : ""
+            }`}
+          />
+        </div>
       ) : (
         <div className="w-full h-full bg-zinc-800 rounded-lg flex items-center justify-center">
           <span className="text-zinc-500 text-xs text-center px-2">
@@ -511,11 +521,13 @@ const SpinWheel: React.FC = () => {
                       transition={{ delay: 0.3 }}
                       className="w-32 flex-shrink-0"
                     >
-                      <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-2xl ring-2 ring-emerald-500/50">
-                        <img
+                      <div className="aspect-[2/3] rounded-xl overflow-hidden shadow-2xl ring-2 ring-emerald-500/50 relative">
+                        <Image
                           src={`https://image.tmdb.org/t/p/w300${winner.poster_path}`}
                           alt={winner.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="128px"
+                          className="object-cover"
                         />
                       </div>
                     </motion.div>

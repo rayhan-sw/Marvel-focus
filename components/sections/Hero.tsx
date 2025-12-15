@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { PlayCircle, Eye, Target } from "lucide-react";
 
@@ -8,22 +9,36 @@ interface HeroProps {
 }
 
 export default function Hero({ onSpin }: HeroProps) {
+  const [particles, setParticles] = useState<
+    {
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      duration: number;
+      delay: number;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 20 }).map((_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 4 + 1,
+        duration: Math.random() * 10 + 10,
+        delay: Math.random() * 5,
+      }))
+    );
+  }, []);
+
   const scrollToMovies = () => {
     const movieList = document.getElementById("movie-list");
     if (movieList) {
       movieList.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  // Generate random particles
-  const particles = Array.from({ length: 20 }).map((_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 1,
-    duration: Math.random() * 10 + 10,
-    delay: Math.random() * 5,
-  }));
 
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-[#0a0a0a] text-white pb-24 md:pb-0">
@@ -46,9 +61,12 @@ export default function Hero({ onSpin }: HeroProps) {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="opacity-30 text-red-600"
+            className="opacity-30 text-red-600 will-change-transform"
           >
-            <Target size={900} strokeWidth={0.8} />
+            <Target
+              className="w-[300px] h-[300px] md:w-[900px] md:h-[900px]"
+              strokeWidth={0.8}
+            />
           </motion.div>
         </div>
 
@@ -56,7 +74,7 @@ export default function Hero({ onSpin }: HeroProps) {
         {particles.map((p) => (
           <motion.div
             key={p.id}
-            className="absolute rounded-full bg-orange-500/60 blur-[1px]"
+            className="absolute rounded-full bg-orange-500/60 blur-[1px] will-change-transform"
             style={{
               left: `${p.x}%`,
               width: p.size,
@@ -92,16 +110,11 @@ export default function Hero({ onSpin }: HeroProps) {
           Unlock Your Heroic Productivity
         </motion.h2>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter mb-6 md:mb-8 leading-[0.9] drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]"
-        >
+        {/* Headline - Optimized for LCP */}
+        <h1 className="text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter mb-6 md:mb-8 leading-[0.9] drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
           Marvel Focus <br />
           <span className="text-white">Method</span>
-        </motion.h1>
+        </h1>
 
         {/* Description */}
         <motion.p
@@ -154,7 +167,7 @@ export default function Hero({ onSpin }: HeroProps) {
         className="absolute bottom-0 right-0 z-20 pointer-events-none select-none"
       >
         <img
-          src="/deadpool2.png"
+          src="/deadpool2.webp"
           alt="Deadpool Peeking"
           className="w-40 md:w-64 lg:w-80 object-contain drop-shadow-2xl transform hover:scale-110 transition-transform duration-300 origin-bottom-right"
         />

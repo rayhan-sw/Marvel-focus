@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface CurtainProps {
@@ -16,10 +17,10 @@ const Curtain: React.FC<CurtainProps> = ({ isClosed, onAnimationComplete }) => {
     setMounted(true);
     // Preload heavy assets globally
     const preloadImage = (src: string) => {
-      const img = new Image();
+      const img = new window.Image();
       img.src = src;
     };
-    preloadImage("/deadpool3.png");
+    preloadImage("/deadpool3.webp");
   }, []);
 
   if (!mounted) return null;
@@ -63,11 +64,14 @@ const Curtain: React.FC<CurtainProps> = ({ isClosed, onAnimationComplete }) => {
         className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
       >
         <div className="flex flex-col items-center drop-shadow-2xl">
-          <img
-            src="/Marvel-focus-transparent.png"
-            alt="Marvel Focus"
-            className="h-20 md:h-32 w-auto object-contain drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"
-          />
+          <div className="relative h-20 md:h-32 w-64">
+            <Image
+              src="/Marvel-focus-transparent.webp"
+              alt="Marvel Focus"
+              fill
+              className="object-contain drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"
+            />
+          </div>
           <div className="text-red-100 mt-4 font-mono text-sm tracking-[0.5em] uppercase opacity-80 bg-black/50 px-4 py-1 rounded-full backdrop-blur-sm">
             ENTERING THE CINEMA
           </div>

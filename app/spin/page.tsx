@@ -3,12 +3,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { useCinemaStore } from "@/store/useCinemaStore";
 import { Movie } from "@/types";
 import { STATIC_MARVEL_DATA } from "@/lib/marvelData";
 import { fetchMarvelMovies } from "@/lib/tmdb";
 import { ArrowLeft, X, Ticket, RotateCcw } from "lucide-react";
-import { formatRuntime } from "@/components/ui/MoviePoster";
 
 // ============================================================================
 // Elegant Golden Ring Component
@@ -147,13 +147,16 @@ const SpinMoviePoster = ({ movie }: { movie: Movie }) => {
   }
 
   return (
-    <img
-      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-      alt={movie.title}
-      className="w-full h-full object-cover"
-      loading="lazy"
-      onError={() => setImageError(true)}
-    />
+    <div className="relative w-full h-full">
+      <Image
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        alt={movie.title}
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover"
+        onError={() => setImageError(true)}
+      />
+    </div>
   );
 };
 

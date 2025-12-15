@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { fetchMarvelMovies } from "@/lib/tmdb";
 import { useCinemaStore } from "@/store/useCinemaStore";
 import ModeSelection from "@/components/steps/ModeSelection";
-import MovieBrowser from "@/components/steps/MovieBrowser";
 import SeatSelection from "@/components/steps/SeatSelection";
 import TicketReveal from "@/components/steps/TicketReveal";
 
@@ -44,8 +43,7 @@ export default function Home() {
   }
 
   // Full-screen components that handle their own layout
-  const isFullScreenStep =
-    bookingStep === "mode-select" || bookingStep === "browsing";
+  const isFullScreenStep = bookingStep === "mode-select";
 
   return (
     <AnimatePresence mode="wait">
@@ -61,18 +59,6 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <ModeSelection />
-            </motion.div>
-          )}
-
-          {bookingStep === "browsing" && (
-            <motion.div
-              key="browsing"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <MovieBrowser />
             </motion.div>
           )}
         </>
